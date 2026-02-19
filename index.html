@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RUPTIVE®</title>
-<link rel="icon" href="src/favicon.png" type="image/png">
+<title>RUPTIVE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
@@ -27,7 +26,7 @@ body{font-family:var(--f);font-weight:400;background:var(--bg);color:var(--dark)
 .nav-drawer a:hover{opacity:1}
 .nav-drawer a:last-child{border-bottom:none}
 
-/* HEADER — sem borda inferior */
+/* HEADER */
 header{position:sticky;top:0;z-index:100;background:var(--bg);padding:16px 0}
 .hdr{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;text-decoration:none}
@@ -39,10 +38,12 @@ header{position:sticky;top:0;z-index:100;background:var(--bg);padding:16px 0}
 .ham.open span:nth-child(2){opacity:0}
 .ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-/* HERO */
-.hero{padding:50px 0 46px}
+/* HERO — espaçamento menor embaixo */
+.hero{min-height:calc(55vh - 53px);display:flex;align-items:center;padding:50px 0}
+@media(min-width:560px){.hero{min-height:calc(75vh - 53px)}}
+.hero .col{width:100%}
 .hero-tag{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(16,17,19,.4);margin-bottom:16px}
-h1{font-size:clamp(34px,9vw,56px);font-weight:400;line-height:1.06;letter-spacing:-.01em;margin-bottom:16px}
+h1{font-size:clamp(38px,10vw,62px);font-weight:400;line-height:1.04;letter-spacing:-.02em;margin-bottom:16px}
 .h1-line1{display:inline-flex;align-items:center;gap:.28em}
 .title-icon{height:.72em;width:auto;display:inline-block;flex-shrink:0;position:relative;top:-.04em}
 .hero-sub{font-size:12px;line-height:1.7;color:rgba(16,17,19,.5);letter-spacing:.03em;margin-bottom:32px}
@@ -57,24 +58,29 @@ h1{font-size:clamp(34px,9vw,56px);font-weight:400;line-height:1.06;letter-spacin
 .btn .arr-w{display:block}.btn .arr-b{display:none}
 .btn:hover .arr-w{display:none}.btn:hover .arr-b{display:block}
 
-/* CASES — sem borda superior */
-#cases{padding:38px 0 44px}
+/* CASES — espaçamento menor em cima */
+#cases{padding:48px 0 44px}
 .sec-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.38);padding:0 var(--pad);max-width:var(--max);margin:0 auto 20px}
+
+/* Slider */
 .slider-out{overflow:hidden}
-.slider-trk{display:flex;gap:12px;will-change:transform;padding-left:var(--pad)}
-@media(min-width:560px){
-  .slider-trk{padding-left:calc((100vw - var(--max)) / 2 + var(--pad))}
-  .card{width:calc(var(--max) - var(--pad) * 2)}
+.slider-trk{
+  display:flex;
+  gap:12px;
+  will-change:transform;
+  /* start at card 1 (Peregrino), set by JS */
 }
-.card{width:calc(min(80vw,310px));flex-shrink:0;cursor:grab;user-select:none}
+.card{width:calc(min(72vw, 290px));flex-shrink:0;cursor:grab;user-select:none}
 .card:active{cursor:grabbing}
+@media(min-width:560px){
+  .card{width:calc(min(72vw, 290px))}
+}
 .card-link{display:block;text-decoration:none;color:var(--dark)}
 .card-img{width:100%;aspect-ratio:4/5;background:#111;position:relative;overflow:hidden}
 .card-img>img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .card-arr{position:absolute;bottom:12px;right:12px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none}
 .card-arr img{width:100%;height:100%;object-fit:contain}
 .card-info{padding:10px 0 0}
-/* espaço entre nome e ® */
 .card-name{font-size:14px;letter-spacing:-.01em}
 .card-name .reg{font-size:9px;margin-left:3px;vertical-align:super;font-weight:400}
 .card-kind{font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--sage);margin-top:3px}
@@ -84,15 +90,10 @@ h1{font-size:clamp(34px,9vw,56px);font-weight:400;line-height:1.06;letter-spacin
 .dot{width:18px;height:2px;background:rgba(16,17,19,.15);border:none;cursor:pointer;padding:0;transition:width .2s,background .2s}
 .dot.on{width:34px;background:var(--dark)}
 
-/* DIVIDER — apenas sombra entre cases e contact */
-.shadow-divider{
-  height:1px;
-  background:transparent;
-  box-shadow:0 6px 18px rgba(16,17,19,.07);
-  margin:0;
-}
+/* SHADOW DIVIDER */
+.shadow-divider{height:1px;background:transparent;box-shadow:0 6px 18px rgba(16,17,19,.07)}
 
-/* CONTACT — sem borda */
+/* CONTACT */
 #contact{padding:38px 0 34px}
 .links-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}
 .lk{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:84px;padding:14px;border:1px solid rgba(16,17,19,.14);text-decoration:none;color:var(--dark);transition:background .2s,color .2s}
@@ -124,7 +125,7 @@ h1{font-size:clamp(34px,9vw,56px);font-weight:400;line-height:1.06;letter-spacin
 .strip.green .strip-btn:hover .arr-w{display:none}.strip.green .strip-btn:hover .arr-b{display:block}
 
 /* TICKER */
-.ticker-block{margin-top:0}
+.ticker-block{}
 .tk-row{overflow:hidden;white-space:nowrap;padding:9px 0}
 .tk-row+.tk-row{border-top:1px solid rgba(16,17,19,.07)}
 .tk-row.r1{background:var(--dark)}
@@ -185,6 +186,7 @@ footer{padding:20px 0 28px}
   <div class="slider-out">
     <div class="slider-trk" id="sliderTrk">
 
+      <!-- card 0: Avesso -->
       <div class="card">
         <a href="https://www.behance.net/gallery/192336403/AVESSO-" target="_blank" rel="noopener" class="card-link">
           <div class="card-img">
@@ -198,6 +200,7 @@ footer{padding:20px 0 28px}
         </a>
       </div>
 
+      <!-- card 1: Peregrino (initial center) -->
       <div class="card">
         <a href="https://www.behance.net/gallery/184367747/Peregrino-" target="_blank" rel="noopener" class="card-link">
           <div class="card-img">
@@ -211,6 +214,7 @@ footer{padding:20px 0 28px}
         </a>
       </div>
 
+      <!-- card 2: Aurora -->
       <div class="card">
         <a href="https://www.behance.net/gallery/191677025/Aurora-" target="_blank" rel="noopener" class="card-link">
           <div class="card-img">
@@ -227,13 +231,12 @@ footer{padding:20px 0 28px}
     </div>
   </div>
   <div class="dots" id="dots">
-    <button class="dot on" data-i="0"></button>
-    <button class="dot"    data-i="1"></button>
+    <button class="dot"    data-i="0"></button>
+    <button class="dot on" data-i="1"></button>
     <button class="dot"    data-i="2"></button>
   </div>
 </section>
 
-<!-- sombra discreta entre cases e links rápidos -->
 <div class="shadow-divider"></div>
 
 <section id="contact">
@@ -324,22 +327,34 @@ footer{padding:20px 0 28px}
   });
 
   /* ── SLIDER ── */
-  var casesEl  = document.getElementById('cases');
-  var trk      = document.getElementById('sliderTrk');
-  var cards    = trk.querySelectorAll('.card');
-  var dots     = document.querySelectorAll('.dot');
-  var n        = cards.length;
+  var trk   = document.getElementById('sliderTrk');
+  var cards = trk.querySelectorAll('.card');
+  var dots  = document.querySelectorAll('.dot');
+  var n     = cards.length;
+  var cur   = 1; /* start on Peregrino (index 1) */
+
   var offsetPx = 0;
   var targetPx = 0;
-  var cur      = 0;
   var rafId    = null;
-  var SENS     = 1.8; /* wheel/touch px → slider px */
 
   function cw(){ return cards[0].offsetWidth + 12; }
   function clamp(v,lo,hi){ return v<lo?lo:v>hi?hi:v; }
 
+  /*
+    Center a given card index in the viewport.
+    The left padding needed = half viewport - half card width.
+    We store this as the "origin" and offset from it.
+  */
+  function originLeft(){
+    return (window.innerWidth - cards[0].offsetWidth) / 2;
+  }
+
+  function applyPadding(){
+    trk.style.paddingLeft = originLeft() + 'px';
+  }
+
   function setDots(i){
-    dots.forEach(function(d,j){ d.classList.toggle('on',j===i); });
+    dots.forEach(function(d,j){ d.classList.toggle('on', j===i); });
     cur = i;
   }
 
@@ -364,71 +379,64 @@ footer{padding:20px 0 28px}
 
   function shiftTo(i){ moveTo(i * cw()); }
 
+  /* init: center on card 1 (Peregrino) */
+  function init(){
+    applyPadding();
+    /* jump instantly to card 1 without animation */
+    offsetPx = cw();
+    targetPx = cw();
+    trk.style.transform = 'translateX(-'+offsetPx+'px)';
+    setDots(1);
+  }
+
   dots.forEach(function(d){
     d.addEventListener('click', function(){ shiftTo(parseInt(d.dataset.i,10)); });
   });
 
-  /* ── WHEEL (página toda) ── */
-  function casesInView(){
-    var r = casesEl.getBoundingClientRect();
-    return r.top <= window.innerHeight * 0.55 && r.bottom >= window.innerHeight * 0.35;
-  }
-
-  window.addEventListener('wheel', function(e){
-    if(!casesInView()) return;
-    var down = e.deltaY > 0;
-    var up   = e.deltaY < 0;
-    if(down && targetPx >= (n-1)*cw()) return;
-    if(up   && targetPx <= 0)           return;
-    e.preventDefault();
-    moveTo(targetPx + e.deltaY * SENS);
-  }, { passive: false });
-
-  /* ── TOUCH — só captura se o toque começar dentro de #cases ── */
-  var touchY0      = 0;
-  var touchPx0     = 0;
-  var touchCapture = false;
-  var touchMoved   = false;
-
-  function touchInsideCases(e){
-    /* check if the touch origin is within the cases section bounds */
-    var r   = casesEl.getBoundingClientRect();
-    var ty  = e.touches[0].clientY;
-    var tx  = e.touches[0].clientX;
-    return ty >= r.top && ty <= r.bottom && tx >= r.left && tx <= r.right;
-  }
+  /* ── TOUCH drag — only when touch starts inside #cases ── */
+  var casesEl     = document.getElementById('cases');
+  var touchY0     = 0;
+  var touchX0     = 0;
+  var touchPx0    = 0;
+  var touchCap    = false;
+  var touchMoved  = false;
+  var touchAxis   = null; /* 'h' | 'v' | null */
 
   casesEl.addEventListener('touchstart', function(e){
-    touchY0      = e.touches[0].clientY;
-    touchPx0     = targetPx;
-    touchCapture = true;
-    touchMoved   = false;
+    touchX0    = e.touches[0].clientX;
+    touchY0    = e.touches[0].clientY;
+    touchPx0   = targetPx;
+    touchCap   = true;
+    touchMoved = false;
+    touchAxis  = null;
   }, { passive: true });
 
-  /* attach move/end to window so finger can drift outside without losing capture */
   window.addEventListener('touchmove', function(e){
-    if(!touchCapture) return;
-    var dy   = touchY0 - e.touches[0].clientY;
-    var newPx = touchPx0 + dy * SENS;
-    var down  = dy > 0;
-    var up    = dy < 0;
-    /* release at boundaries */
-    if(down && newPx >= (n-1)*cw()){ touchCapture=false; return; }
-    if(up   && newPx <= 0)          { touchCapture=false; return; }
-    if(Math.abs(dy) > 6){
-      touchMoved = true;
-      e.preventDefault();
-      moveTo(newPx);
+    if(!touchCap) return;
+    var dx = touchX0 - e.touches[0].clientX;
+    var dy = touchY0 - e.touches[0].clientY;
+
+    /* determine axis on first significant move */
+    if(!touchAxis && (Math.abs(dx) > 6 || Math.abs(dy) > 6)){
+      touchAxis = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
     }
+    if(touchAxis !== 'h') return; /* let vertical scroll be normal */
+
+    touchMoved = true;
+    e.preventDefault();
+    moveTo(touchPx0 + dx);
   }, { passive: false });
 
   window.addEventListener('touchend', function(){
-    if(!touchCapture) return;
-    touchCapture = false;
-    shiftTo(clamp(Math.round(targetPx/cw()), 0, n-1));
+    if(!touchCap) return;
+    touchCap = false;
+    if(touchAxis === 'h'){
+      shiftTo(clamp(Math.round(targetPx/cw()), 0, n-1));
+    }
+    touchAxis = null;
   });
 
-  /* ── MOUSE DRAG on track ── */
+  /* ── MOUSE DRAG ── */
   var dragX0   = 0;
   var dragPx0  = 0;
   var dragging = false;
@@ -453,7 +461,20 @@ footer{padding:20px 0 28px}
     a.addEventListener('click', function(e){ if(dragged) e.preventDefault(); });
   });
 
-  window.addEventListener('resize', function(){ shiftTo(cur); });
+  window.addEventListener('resize', function(){
+    applyPadding();
+    /* recalculate offset for current card after resize */
+    offsetPx = cur * cw();
+    targetPx = offsetPx;
+    trk.style.transform = 'translateX(-'+offsetPx+'px)';
+  });
+
+  /* run after fonts/layout settle */
+  if(document.readyState === 'complete'){
+    init();
+  } else {
+    window.addEventListener('load', init);
+  }
 
 })();
 </script>
