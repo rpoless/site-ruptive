@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RUPTIVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#E9EAE8;--bg-alt:#F1F2F1;--dark:#101113;--sage:#82A094;--f:'Archivo',sans-serif;--max:500px;--pad:22px}
+body{font-family:var(--f);font-weight:400;background:var(--bg);color:var(--dark);min-height:100vh;overflow-x:hidden}
+.col{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+@media(min-width:900px){:root{--max:900px;--pad:28px}}
+@media(min-width:1200px){:root{--max:1040px;--pad:36px}}
+
+/* OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(16,17,19,.45);z-index:199;opacity:0;pointer-events:none;transition:opacity .28s}
+.overlay.open{opacity:1;pointer-events:all}
+
+/* DRAWER */
+.nav-drawer{position:fixed;top:0;right:0;width:min(280px,80vw);height:100vh;background:var(--dark);z-index:200;display:flex;flex-direction:column;padding:28px var(--pad);transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1)}
+.nav-drawer.open{transform:translateX(0)}
+.nav-drawer-close{align-self:flex-end;background:none;border:none;color:var(--bg);font-size:20px;cursor:pointer;opacity:.5;margin-bottom:36px;font-family:var(--f);transition:opacity .18s}
+.nav-drawer-close:hover{opacity:1}
+.nav-drawer a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);text-decoration:none;opacity:.55;padding:14px 0;border-bottom:1px solid rgba(233,234,232,.08);transition:opacity .18s}
+.nav-drawer a:hover{opacity:1}
+.nav-drawer a:last-child{border-bottom:none}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:var(--bg);padding:16px 0}
+.hdr{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:20px;width:auto;display:block}
+.ham{display:flex;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+.ham span{display:block;height:1.5px;background:var(--dark);transition:transform .22s,opacity .22s;transform-origin:center}
+.ham span:nth-child(2){width:65%}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* HERO — espaçamento menor embaixo */
+.hero{min-height:calc(55vh - 53px);display:flex;align-items:center;padding:50px 0}
+@media(min-width:560px){.hero{min-height:calc(75vh - 53px)}}
+.hero .col{width:100%}
+.hero .col{padding-right:calc(var(--pad) + 16px)}
+.hero-tag{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(16,17,19,.45);margin-bottom:28px}
+.tag-reveal{opacity:0;transform:translateY(6px);animation:tagIn .8s ease forwards;animation-delay:.2s}
+@keyframes tagIn{to{opacity:1;transform:translateY(0)}}
+.sub-reveal{opacity:0;transform:translateY(6px);animation:subIn .8s ease forwards;animation-delay:.45s}
+@keyframes subIn{to{opacity:1;transform:translateY(0)}}
+.btn-reveal{opacity:0;transform:translateY(6px);animation:btnIn .8s ease forwards;animation-delay:.65s}
+@keyframes btnIn{to{opacity:1;transform:translateY(0)}}
+h1{font-size:clamp(34px,6.6vw,56px);font-weight:400;line-height:1.06;letter-spacing:-.02em;margin-bottom:16px}
+.h1-line1{display:inline-flex;align-items:center;gap:.28em}
+.title-icon{height:.82em;width:auto;display:inline-block;flex-shrink:0;position:relative;top:.06em;margin-left:.2em}
+.type-cursor{display:inline-block;margin-left:.08em;opacity:.6;animation:blink 1s steps(2,end) infinite}
+@keyframes blink{0%,49%{opacity:0}50%,100%{opacity:.7}}
+.br-desktop{display:none}
+.hero-sub{font-size:13px;line-height:1.75;color:rgba(16,17,19,.62);letter-spacing:.02em;margin-bottom:32px}
+@media(min-width:900px){
+  h1{font-size:clamp(32px,3.9vw,54px)}
+  .hero-sub{font-size:14px}
+  .br-desktop{display:inline}
+  .hero .col{padding-right:calc(var(--pad) + 40px)}
+}
+@media(max-width:559px){
+  .hero{padding:82px 0 90px}
+  .hero h1{font-size:clamp(24px,7.2vw,36px)}
+}
+
+/* SECTION SPLIT */
+.section-split{border-top:1px solid rgba(16,17,19,.08);padding-top:8px}
+.section-alt{background:var(--bg-alt)}
+
+/* DUAL BLOCK */
+.dual-block{padding:56px 0 72px}
+.dual-grid{display:grid;gap:28px}
+.dual-col{min-width:0}
+@media(min-width:900px){
+  .dual-grid{grid-template-columns:1fr 1fr;align-items:start;gap:36px}
+}
+
+/* METHOD */
+#method{padding:96px 0 40px}
+.method-title{font-size:16px;letter-spacing:-.01em;margin-bottom:16px}
+.method-list{display:flex;flex-direction:column;gap:16px}
+.method-item{display:flex;gap:18px;padding:16px 0;border-top:1px solid rgba(16,17,19,.12)}
+.method-item:last-child{border-bottom:1px solid rgba(16,17,19,.12)}
+.method-no{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.38);flex-shrink:0;min-width:28px}
+.method-name{font-size:15.5px;letter-spacing:-.01em}
+.method-desc{font-size:13px;line-height:1.68;color:rgba(16,17,19,.58);margin-top:6px}
+@media(min-width:900px){
+  .method-name{font-size:16px}
+  .method-desc{font-size:13.5px;max-width:660px}
+}
+
+/* MICRO BLOCK */
+.micro-block{padding:0}
+.micro-lead{font-size:14.5px;line-height:1.7;color:rgba(16,17,19,.78);letter-spacing:.01em;margin-bottom:14px}
+.micro-note{font-size:12.5px;line-height:1.7;color:rgba(16,17,19,.6);letter-spacing:.02em;margin-bottom:14px}
+.micro-steps{font-size:12.5px;line-height:1.9;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,17,19,.58)}
+.micro-steps span{display:block;padding-left:2px}
+.filter-list{display:flex;flex-direction:column;gap:8px;font-size:12.5px;line-height:1.7;color:rgba(16,17,19,.62);letter-spacing:.02em}
+.filter-list span{display:block}
+.form-wrap{border:1px solid rgba(16,17,19,.14);padding:14px;background:var(--bg)}
+@media(min-width:900px){
+  .micro-lead{font-size:15px;max-width:640px}
+  .micro-note{font-size:13px;max-width:640px}
+  .micro-steps{font-size:13px;max-width:640px}
+  .filter-list{font-size:13px;max-width:640px}
+  .form-wrap{padding:18px}
+}
+
+/* BUTTONS */
+.btn,.strip-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
+.btn{color:var(--bg);background:var(--dark);padding:13px 16px;border:1.5px solid var(--dark)}
+.btn:hover{background:transparent;color:var(--dark)}
+@keyframes btnTextIn{to{opacity:1}}
+.sq{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.sq img{width:100%;height:100%;object-fit:contain}
+.arr-w{display:block}.arr-b{display:none}
+.btn .arr-w{display:block}.btn .arr-b{display:none}
+.btn:hover .arr-w{display:none}.btn:hover .arr-b{display:block}
+
+/* CASES — espaçamento menor em cima */
+#cases{padding:48px 0 44px}
+.sec-tag{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.45);padding:0 var(--pad);max-width:var(--max);margin:0 auto 22px}
+
+/* Slider */
+.slider-out{overflow:hidden}
+.slider-trk{
+  display:flex;
+  gap:12px;
+  will-change:transform;
+  /* start at card 1 (Peregrino), set by JS */
+}
+.card{width:calc(min(90vw, 360px));flex-shrink:0;cursor:grab;user-select:none}
+.card:active{cursor:grabbing}
+@media(min-width:560px){
+  .card{width:calc(min(90vw, 360px))}
+}
+.card-link{display:block;text-decoration:none;color:var(--dark)}
+.card-img{width:100%;aspect-ratio:4/5;background:#111;position:relative;overflow:hidden}
+.card-img>img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.card-arr{position:absolute;bottom:12px;right:12px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none}
+.card-arr img{width:100%;height:100%;object-fit:contain}
+.card-info{padding:10px 0 0}
+.card-name{font-size:14px;letter-spacing:-.01em}
+.card-name .reg{font-size:9px;margin-left:3px;vertical-align:super;font-weight:400}
+.card-kind{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(16,17,19,.55);margin-top:4px}
+
+/* DOTS */
+.dots{display:flex;gap:6px;padding:16px var(--pad) 0;max-width:var(--max);margin:0 auto}
+.dot{width:18px;height:2px;background:rgba(16,17,19,.15);border:none;cursor:pointer;padding:0;transition:width .2s,background .2s}
+.dot.on{width:34px;background:var(--dark)}
+
+/* WHY */
+.why-block{padding:0}
+.why-tag{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.45);margin-bottom:10px}
+.why-text{font-size:13.5px;line-height:1.7;color:rgba(16,17,19,.7);letter-spacing:.02em;margin-bottom:10px}
+.why-sub{font-size:12.5px;line-height:1.7;color:rgba(16,17,19,.58);letter-spacing:.02em;margin-top:4px}
+.why-result{font-size:12.5px;line-height:1.7;color:rgba(16,17,19,.6);letter-spacing:.02em;margin-top:8px}
+.why-cta{margin-top:16px}
+@media(min-width:900px){
+  .why-text{font-size:14px;max-width:660px}
+  .why-sub{font-size:13px;max-width:660px}
+  .why-result{font-size:13px;max-width:660px}
+}
+
+/* SHADOW DIVIDER */
+.shadow-divider{height:1px;background:transparent;box-shadow:0 6px 18px rgba(16,17,19,.07)}
+
+/* CONTACT */
+#contact{padding:38px 0 34px}
+.links-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}
+.lk{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:84px;padding:14px;border:1px solid rgba(16,17,19,.14);text-decoration:none;color:var(--dark);transition:background .2s,color .2s}
+.lk:hover{background:var(--dark);color:var(--bg)}
+.lk-label{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.4}
+.lk-name{font-size:14px;letter-spacing:-.005em}
+.lk-sq{position:absolute;top:11px;right:11px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.lk-sq img{width:100%;height:100%;object-fit:contain}
+.lk .lk-sq .arr-b{display:block}.lk .lk-sq .arr-w{display:none}
+.lk:hover .lk-sq .arr-b{display:none}.lk:hover .lk-sq .arr-w{display:block}
+
+/* STRIPS */
+.strip{margin-top:9px;padding:19px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.strip.dark{background:var(--dark);color:var(--bg)}
+.strip.green{background:var(--sage)}
+.strip-txt{font-size:12.5px;line-height:1.65;opacity:.6}
+.strip.green .strip-txt{color:var(--dark)}
+.strip-txt strong{display:block;font-size:14px;font-weight:400;opacity:1;margin-bottom:2px;letter-spacing:-.01em}
+.strip.dark .strip-txt strong{color:var(--bg)}
+.strip.green .strip-txt strong{color:var(--dark)}
+.strip-btn{font-size:8.5px;padding:10px 14px}
+.strip.dark .strip-btn{background:var(--bg);color:var(--dark)}
+.strip.green .strip-btn{background:var(--dark);color:var(--bg)}
+.strip.dark .strip-btn:hover{background:var(--sage);color:var(--dark)}
+.strip.green .strip-btn:hover{background:var(--bg);color:var(--dark)}
+.strip.dark .strip-btn .arr-b{display:block}.strip.dark .strip-btn .arr-w{display:none}
+.strip.dark .strip-btn:hover .arr-b{display:block}.strip.dark .strip-btn:hover .arr-w{display:none}
+.strip.green .strip-btn .arr-b{display:none}.strip.green .strip-btn .arr-w{display:block}
+.strip.green .strip-btn:hover .arr-w{display:none}.strip.green .strip-btn:hover .arr-b{display:block}
+
+/* TICKER */
+.ticker-block{}
+.tk-row{overflow:hidden;white-space:nowrap;padding:9px 0}
+.tk-row+.tk-row{border-top:1px solid rgba(16,17,19,.07)}
+.tk-row.r1{background:var(--dark)}
+.tk-row.r2{background:transparent}
+.tk-in{display:inline-flex;white-space:nowrap}
+.r1 .tk-in{animation:tk-fwd 20s linear infinite}
+.r2 .tk-in{animation:tk-rev 20s linear infinite}
+@keyframes tk-fwd{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes tk-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.tk-in span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:0 22px}
+.r1 .tk-in span{color:rgba(233,234,232,.65)}
+.r1 .tk-in .sep{color:var(--sage);padding:0 6px}
+.r2 .tk-in span{color:rgba(16,17,19,.32)}
+.r2 .tk-in .sep{color:var(--sage);opacity:.8;padding:0 6px}
+
+/* FOOTER */
+footer{padding:20px 0 28px}
+.ftr{max-width:var(--max);margin:0 auto;padding:0 var(--pad);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.ftr-copy{font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;opacity:.28}
+.ftr-mail{font-size:9.5px;color:var(--dark);text-decoration:none;opacity:.42;transition:opacity .18s}
+.ftr-mail:hover{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<nav class="nav-drawer" id="drawer">
+  <button class="nav-drawer-close" id="drawerClose">&#x2715;</button>
+  <a href="index.html#cases" id="navCases">Cases</a>
+  <a href="index.html#contact" id="navContact">Contato</a>
+  <a href="diagnostico.html" id="navDiag">Iniciar diagn&#xF3;stico estrat&#xE9;gico</a>
+</nav>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="index.html"><img src="src/logo.png" alt="RUPTIVE"></a>
+    <button class="ham" id="ham" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="col">
+    <p class="hero-tag tag-reveal">Diagn&#xF3;stico Estrat&#xE9;gico</p>
+    <h1><span id="heroType" data-text="Toda marca come&#xE7;a com diagn&#xF3;stico.">Toda marca come&#xE7;a com diagn&#xF3;stico.</span><span class="type-cursor" id="typeCursor">|</span></h1>
+    <p class="hero-sub sub-reveal">Antes de qualquer decis&#xE3;o visual, &#xE9; necess&#xE1;rio entender onde sua marca est&#xE1; e para onde ela deve ir.</p>
+  </div>
+</section>
+<section class="section-split">
+  <div class="col">
+    <div class="form-wrap">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdI5ETxoVG-0nO31UK0uJL_KXd_tN7zLgIDV9OURpmWiJz2xQ/viewform?embedded=true" width="100%" height="2300" frameborder="0" marginheight="0" marginwidth="0">Carregando&#x2026;</iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt section-split">
+  <div class="col">
+    <p class="micro-lead">Ap&#xF3;s o envio, sua marca ser&#xE1; analisada estrategicamente.</p>
+    <p class="micro-note">Caso fa&#xE7;a sentido, entraremos em contato com os pr&#xF3;ximos passos.</p>
+  </div>
+</section>
+<footer>
+  <div class="ftr">
+    <span class="ftr-copy">RUPTIVE&#xAE; &#x2014; Est. 2K26</span>
+    <a href="mailto:designruptive@gmail.com" class="ftr-mail">designruptive@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  /* ── HERO TYPEWRITER ── */
+  var heroType = document.getElementById('heroType');
+  if(heroType){
+    var full = heroType.getAttribute('data-text') || heroType.textContent;
+    var i = 0;
+    var speed = 45;
+    heroType.textContent = '';
+    function tick(){
+      if(i >= full.length){
+        var cursor = document.getElementById('typeCursor');
+        if(cursor) cursor.remove();
+        return;
+      }
+      heroType.appendChild(document.createTextNode(full[i]));
+      i += 1;
+      setTimeout(tick, speed);
+    }
+    tick();
+  }
+
+  /* ── HAMBURGER ── */
+  var ham=document.getElementById('ham');
+  var drawer=document.getElementById('drawer');
+  var overlay=document.getElementById('overlay');
+  var dClose=document.getElementById('drawerClose');
+  function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');ham.classList.add('open')}
+  function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');ham.classList.remove('open')}
+  ham.addEventListener('click',openDrawer);
+  dClose.addEventListener('click',closeDrawer);
+  overlay.addEventListener('click',closeDrawer);
+  ['navCases','navContact','navDiag'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.addEventListener('click',closeDrawer);
+  });
+
+  /* ── SLIDER ── */
+  var trk   = document.getElementById('sliderTrk');
+  if(!trk) return;
+  var cards = trk.querySelectorAll('.card');
+  var dots  = document.querySelectorAll('.dot');
+  var n     = cards.length;
+  var cur   = 1; /* start on Peregrino (index 1) */
+
+  var offsetPx = 0;
+  var targetPx = 0;
+  var rafId    = null;
+
+  function cw(){ return cards[0].offsetWidth + 12; }
+  function clamp(v,lo,hi){ return v<lo?lo:v>hi?hi:v; }
+
+  /*
+    Center a given card index in the viewport.
+    The left padding needed = half viewport - half card width.
+    We store this as the "origin" and offset from it.
+  */
+  function originLeft(){
+    return (window.innerWidth - cards[0].offsetWidth) / 2;
+  }
+
+  function applyPadding(){
+    trk.style.paddingLeft = originLeft() + 'px';
+  }
+
+  function setDots(i){
+    dots.forEach(function(d,j){ d.classList.toggle('on', j===i); });
+    cur = i;
+  }
+
+  function animate(){
+    var diff = targetPx - offsetPx;
+    if(Math.abs(diff) < 0.4){
+      offsetPx = targetPx;
+      trk.style.transform = 'translateX(-'+offsetPx+'px)';
+      rafId = null;
+      return;
+    }
+    offsetPx += diff * 0.12;
+    trk.style.transform = 'translateX(-'+offsetPx+'px)';
+    rafId = requestAnimationFrame(animate);
+  }
+
+  function moveTo(px){
+    targetPx = clamp(px, 0, (n-1)*cw());
+    setDots(clamp(Math.round(targetPx/cw()), 0, n-1));
+    if(!rafId) rafId = requestAnimationFrame(animate);
+  }
+
+  function shiftTo(i){ moveTo(i * cw()); }
+
+  /* init: center on card 1 (Peregrino) */
+  function init(){
+    applyPadding();
+    /* jump instantly to card 1 without animation */
+    offsetPx = cw();
+    targetPx = cw();
+    trk.style.transform = 'translateX(-'+offsetPx+'px)';
+    setDots(1);
+  }
+
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){ shiftTo(parseInt(d.dataset.i,10)); });
+  });
+
+  /* ── TOUCH drag — only when touch starts inside #cases ── */
+  var casesEl     = document.getElementById('cases');
+  var touchY0     = 0;
+  var touchX0     = 0;
+  var touchPx0    = 0;
+  var touchCap    = false;
+  var touchMoved  = false;
+  var touchAxis   = null; /* 'h' | 'v' | null */
+
+  casesEl.addEventListener('touchstart', function(e){
+    touchX0    = e.touches[0].clientX;
+    touchY0    = e.touches[0].clientY;
+    touchPx0   = targetPx;
+    touchCap   = true;
+    touchMoved = false;
+    touchAxis  = null;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', function(e){
+    if(!touchCap) return;
+    var dx = touchX0 - e.touches[0].clientX;
+    var dy = touchY0 - e.touches[0].clientY;
+
+    /* determine axis on first significant move */
+    if(!touchAxis && (Math.abs(dx) > 3 || Math.abs(dy) > 3)){
+      touchAxis = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
+    }
+    if(touchAxis !== 'h') return; /* let vertical scroll be normal */
+
+    touchMoved = true;
+    e.preventDefault();
+    moveTo(touchPx0 + dx * 1.25);
+  }, { passive: false });
+
+  window.addEventListener('touchend', function(){
+    if(!touchCap) return;
+    touchCap = false;
+    if(touchAxis === 'h'){
+      shiftTo(clamp(Math.round(targetPx/cw()), 0, n-1));
+    }
+    touchAxis = null;
+  });
+
+  /* ── MOUSE DRAG ── */
+  var dragX0   = 0;
+  var dragPx0  = 0;
+  var dragging = false;
+  var dragged  = false;
+
+  trk.addEventListener('mousedown', function(e){
+    dragX0=e.clientX; dragPx0=targetPx; dragging=true; dragged=false; e.preventDefault();
+  });
+  window.addEventListener('mousemove', function(e){
+    if(!dragging) return;
+    var dx = dragX0 - e.clientX;
+    if(Math.abs(dx)>6) dragged=true;
+    moveTo(dragPx0 + dx);
+  });
+  window.addEventListener('mouseup', function(){
+    if(!dragging) return;
+    dragging = false;
+    shiftTo(clamp(Math.round(targetPx/cw()), 0, n-1));
+  });
+
+  trk.querySelectorAll('.card-link').forEach(function(a){
+    a.addEventListener('click', function(e){ if(dragged) e.preventDefault(); });
+  });
+
+  window.addEventListener('resize', function(){
+    applyPadding();
+    /* recalculate offset for current card after resize */
+    offsetPx = cur * cw();
+    targetPx = offsetPx;
+    trk.style.transform = 'translateX(-'+offsetPx+'px)';
+  });
+
+  /* run after fonts/layout settle */
+  if(document.readyState === 'complete'){
+    init();
+  } else {
+    window.addEventListener('load', init);
+  }
+
+})();
+</script>
+</body>
+</html>

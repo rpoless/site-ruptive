@@ -1,0 +1,181 @@
+
+
+<section id="method" class="section-alt section-split">
+  <div class="col">
+    <p class="sec-tag" style="padding:0;margin-bottom:12px;">RUPTIVE Framework&#xAE;</p>
+    <div class="method-list">
+      <div class="method-item">
+        <div class="method-no">01</div>
+        <div>
+          <div class="method-name">Ruptura &#x2014; Diagn&#xF3;stico Estrat&#xE9;gico</div>
+          <div class="method-desc">Entender onde a marca est&#xE1;, identificar falhas estruturais e problemas de percep&#xE7;&#xE3;o.</div>
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-no">02</div>
+        <div>
+          <div class="method-name">Dire&#xE7;&#xE3;o &#x2014; Posicionamento</div>
+          <div class="method-desc">Definir territ&#xF3;rio, proposta de valor e caminho estrat&#xE9;gico da marca.</div>
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-no">03</div>
+        <div>
+          <div class="method-name">Constru&#xE7;&#xE3;o &#x2014; Sistema de Identidade</div>
+          <div class="method-desc">Traduzir a estrat&#xE9;gia em um sistema visual e estrutural consistente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases" class="section-split">
+  <p class="sec-tag">Cases Selecionados</p>
+  <div class="slider-out">
+    <div class="slider-trk" id="sliderTrk">
+
+      <!-- card 0: Avesso -->
+      <div class="card">
+        <a href="https://www.behance.net/gallery/192336403/AVESSO-" target="_blank" rel="noopener" class="card-link">
+          <div class="card-img">
+            <img src="src/avesso.png" alt="Avesso">
+            <span class="card-arr"><img src="src/seta-w.png" alt=""></span>
+          </div>
+          <div class="card-info">
+            <div class="card-name">Avesso <span class="reg">&#xAE;</span></div>
+            <div class="card-kind">Reposicionamento estrat&#xE9;gico</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- card 1: Peregrino (initial center) -->
+      <div class="card">
+        <a href="https://www.behance.net/gallery/184367747/Peregrino-" target="_blank" rel="noopener" class="card-link">
+          <div class="card-img">
+            <img src="src/peregrino.png" alt="Peregrino">
+            <span class="card-arr"><img src="src/seta-w.png" alt=""></span>
+          </div>
+          <div class="card-info">
+            <div class="card-name">Peregrino <span class="reg">&#xAE;</span></div>
+            <div class="card-kind">Estrutura&#xE7;&#xE3;o de marca</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- card 2: Aurora -->
+      <div class="card">
+        <a href="https://www.behance.net/gallery/191677025/Aurora-" target="_blank" rel="noopener" class="card-link">
+          <div class="card-img">
+            <img src="src/aurora.png" alt="Aurora">
+            <span class="card-arr"><img src="src/seta-w.png" alt=""></span>
+          </div>
+          <div class="card-info">
+            <div class="card-name">Aurora <span class="reg">&#xAE;</span></div>
+            <div class="card-kind">Diagn&#xF3;stico e dire&#xE7;&#xE3;o</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <div class="dots" id="dots">
+    <button class="dot"    data-i="0"></button>
+    <button class="dot on" data-i="1"></button>
+    <button class="dot"    data-i="2"></button>
+  </div>
+</section>
+
+
+
+<section class="dual-block section-alt section-split">
+  <div class="col dual-grid">
+    <div class="dual-col micro-block">
+    <p class="micro-lead">Voc&#xEA; n&#xE3;o come&#xE7;a com design.<br>Voc&#xEA; come&#xE7;a com diagn&#xF3;stico.</p>
+    <p class="micro-note">Sem entender o cen&#xE1;rio atual, qualquer decis&#xE3;o se torna superficial.</p>
+    <div class="micro-steps">
+      <span>&#x2192; Identificamos falhas estruturais</span>
+      <span>&#x2192; Definimos uma dire&#xE7;&#xE3;o clara</span>
+      <span>&#x2192; Estruturamos a base da marca</span>
+    </div>
+    </div>
+    <div class="dual-col why-block">
+    <p class="why-tag">O erro recorrente</p>
+    <p class="why-text">A maioria das marcas ignora esse processo.</p>
+    <p class="why-sub">Investem em est&#xE9;tica antes de entender posicionamento.</p>
+    <p class="why-result">O resultado &#xE9; previs&#xED;vel:<br>uma marca visualmente bem constru&#xED;da, mas sem dire&#xE7;&#xE3;o.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdI5ETxoVG-0nO31UK0uJL_KXd_tN7zLgIDV9OURpmWiJz2xQ/viewform?usp=preview" class="btn why-cta" target="_blank" rel="noopener">
+      Iniciar diagn&#xF3;stico estrat&#xE9;gico
+      <span class="sq"><img class="arr-w" src="src/seta-w.png" alt=""><img class="arr-b" src="src/seta-b.png" alt=""></span>
+    </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<div class="shadow-divider"></div>
+
+<section id="contact" class="section-split">
+  <div class="col">
+    <p class="sec-tag" style="padding:0;margin-bottom:0;">Links R&#xE1;pidos</p>
+    <div class="links-grid">
+      <a class="lk" href="https://www.behance.net/ruptive-design" target="_blank" rel="noopener">
+        <span class="lk-label">Portf&#xF3;lio</span>
+        <span class="lk-name">B&#x113;hance</span>
+        <span class="lk-sq"><img class="arr-b" src="src/seta-b.png" alt=""><img class="arr-w" src="src/seta-w.png" alt=""></span>
+      </a>
+      <a class="lk" href="https://www.instagram.com/designruptive/" target="_blank" rel="noopener">
+        <span class="lk-label">Redes</span>
+        <span class="lk-name">Instagram</span>
+        <span class="lk-sq"><img class="arr-b" src="src/seta-b.png" alt=""><img class="arr-w" src="src/seta-w.png" alt=""></span>
+      </a>
+    </div>
+    <div class="strip dark">
+      <div class="strip-txt">
+        <strong>Iniciar diagn&#xF3;stico estrat&#xE9;gico</strong>
+        Vamos entender onde sua marca est&#xE1; e para onde ela precisa ir.
+      </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdI5ETxoVG-0nO31UK0uJL_KXd_tN7zLgIDV9OURpmWiJz2xQ/viewform?usp=preview" class="strip-btn" target="_blank" rel="noopener">
+        Iniciar diagn&#xF3;stico estrat&#xE9;gico
+        <span class="sq"><img class="arr-b" src="src/seta-b.png" alt=""><img class="arr-w" src="src/seta-w.png" alt=""></span>
+      </a>
+    </div>
+    <div class="strip green">
+      <div class="strip-txt">
+        <strong>E-mail direto</strong>
+        designruptive@gmail.com
+      </div>
+      <a href="mailto:designruptive@gmail.com" class="strip-btn">
+        Contato
+        <span class="sq"><img class="arr-b" src="src/seta-b.png" alt=""><img class="arr-w" src="src/seta-w.png" alt=""></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-block">
+  <div class="tk-row r1">
+    <div class="tk-in">
+      <span>[ESTRAT&#xC9;GIA // POSICIONAMENTO]</span><span class="sep">*</span>
+      <span>[DIAGN&#xD3;STICO // DIRE&#xC7;&#xC3;O]</span><span class="sep">*</span>
+      <span>[MARCA // SISTEMA]</span><span class="sep">*</span>
+      <span>[ESTRAT&#xC9;GIA // POSICIONAMENTO]</span><span class="sep">*</span>
+      <span>[DIAGN&#xD3;STICO // DIRE&#xC7;&#xC3;O]</span><span class="sep">*</span>
+      <span>[MARCA // SISTEMA]</span><span class="sep">*</span>
+      <span>[ESTRAT&#xC9;GIA // POSICIONAMENTO]</span><span class="sep">*</span>
+      <span>[DIAGN&#xD3;STICO // DIRE&#xC7;&#xC3;O]</span><span class="sep">*</span>
+    </div>
+  </div>
+  <div class="tk-row r2">
+    <div class="tk-in">
+      <span>RUPTIVE</span><span class="sep">*</span><span>EST. 2K26</span><span class="sep">*</span>
+      <span>RUPTIVE</span><span class="sep">*</span><span>EST. 2K26</span><span class="sep">*</span>
+      <span>RUPTIVE</span><span class="sep">*</span><span>EST. 2K26</span><span class="sep">*</span>
+      <span>RUPTIVE</span><span class="sep">*</span><span>EST. 2K26</span><span class="sep">*</span>
+      <span>RUPTIVE</span><span class="sep">*</span><span>EST. 2K26</span><span class="sep">*</span>
+    </div>
+  </div>
+</div>
+

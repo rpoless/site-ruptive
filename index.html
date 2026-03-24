@@ -9,9 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#E9EAE8;--dark:#101113;--sage:#82A094;--f:'Archivo',sans-serif;--max:500px;--pad:22px}
+:root{--bg:#E9EAE8;--bg-alt:#F1F2F1;--dark:#101113;--sage:#82A094;--f:'Archivo',sans-serif;--max:500px;--pad:22px}
 body{font-family:var(--f);font-weight:400;background:var(--bg);color:var(--dark);min-height:100vh;overflow-x:hidden}
 .col{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+@media(min-width:900px){:root{--max:900px;--pad:28px}}
+@media(min-width:1200px){:root{--max:1040px;--pad:36px}}
 
 /* OVERLAY */
 .overlay{position:fixed;inset:0;background:rgba(16,17,19,.45);z-index:199;opacity:0;pointer-events:none;transition:opacity .28s}
@@ -42,11 +44,76 @@ header{position:sticky;top:0;z-index:100;background:var(--bg);padding:16px 0}
 .hero{min-height:calc(55vh - 53px);display:flex;align-items:center;padding:50px 0}
 @media(min-width:560px){.hero{min-height:calc(75vh - 53px)}}
 .hero .col{width:100%}
-.hero-tag{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(16,17,19,.4);margin-bottom:16px}
-h1{font-size:clamp(38px,10vw,62px);font-weight:400;line-height:1.04;letter-spacing:-.02em;margin-bottom:16px}
+.hero .col{padding-right:calc(var(--pad) + 16px)}
+.hero-tag{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(16,17,19,.45);margin-bottom:28px}
+.tag-reveal{opacity:0;transform:translateY(6px);animation:tagIn .8s ease forwards;animation-delay:.2s}
+@keyframes tagIn{to{opacity:1;transform:translateY(0)}}
+.sub-reveal{opacity:0;transform:translateY(6px);animation:subIn .8s ease forwards;animation-delay:.45s}
+@keyframes subIn{to{opacity:1;transform:translateY(0)}}
+.btn-reveal{opacity:0;transform:translateY(6px);animation:btnIn .8s ease forwards;animation-delay:.65s}
+@keyframes btnIn{to{opacity:1;transform:translateY(0)}}
+h1{font-size:clamp(34px,6.6vw,56px);font-weight:400;line-height:1.06;letter-spacing:-.02em;margin-bottom:16px;min-height:2.4em}
 .h1-line1{display:inline-flex;align-items:center;gap:.28em}
-.title-icon{height:.72em;width:auto;display:inline-block;flex-shrink:0;position:relative;top:-.04em}
-.hero-sub{font-size:12px;line-height:1.7;color:rgba(16,17,19,.5);letter-spacing:.03em;margin-bottom:32px}
+.title-icon{height:.82em;width:auto;display:inline-block;flex-shrink:0;position:relative;top:.06em;margin-left:.2em}
+.type-cursor{display:inline-block;margin-left:.08em;opacity:.6;animation:blink 1s steps(2,end) infinite}
+@keyframes blink{0%,49%{opacity:0}50%,100%{opacity:.7}}
+.br-desktop{display:none}
+.hero-sub{font-size:13px;line-height:1.75;color:rgba(16,17,19,.62);letter-spacing:.02em;margin-bottom:32px}
+@media(min-width:900px){
+  h1{font-size:clamp(32px,3.9vw,54px)}
+  .hero-sub{font-size:14px}
+  .br-desktop{display:inline}
+  .hero .col{padding-right:calc(var(--pad) + 40px)}
+}
+@media(max-width:559px){
+  .hero{padding:110px 0 130px;min-height:calc(100vh - 53px)}
+  .hero h1{font-size:clamp(24px,7.2vw,36px)}
+  .hero .col{padding-right:calc(var(--pad) + 40px)}
+  .hero h1{min-height:3.2em}
+}
+
+/* SECTION SPLIT */
+.section-split{border-top:1px solid rgba(16,17,19,.08);padding-top:8px}
+.section-alt{background:var(--bg-alt)}
+
+/* DUAL BLOCK */
+.dual-block{padding:56px 0 72px}
+.dual-grid{display:grid;gap:28px}
+.dual-col{min-width:0}
+@media(min-width:900px){
+  .dual-grid{grid-template-columns:1fr 1fr;align-items:start;gap:36px}
+}
+
+/* METHOD */
+#method{padding:54px 0 40px}
+.method-title{font-size:16px;letter-spacing:-.01em;margin-bottom:16px}
+.method-list{display:flex;flex-direction:column;gap:16px}
+.method-item{display:flex;gap:18px;padding:16px 0;border-top:1px solid rgba(16,17,19,.12)}
+.method-item:last-child{border-bottom:1px solid rgba(16,17,19,.12)}
+.method-no{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.38);flex-shrink:0;min-width:28px}
+.method-name{font-size:15.5px;letter-spacing:-.01em}
+.method-desc{font-size:13px;line-height:1.68;color:rgba(16,17,19,.58);margin-top:6px}
+.reveal-item{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
+.reveal-item.in{opacity:1;transform:translateY(0)}
+.reveal-line{opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .5s ease}
+.reveal-line.in{opacity:1;transform:translateX(0)}
+.reveal-line.right{transform:translateX(14px)}
+@media(min-width:900px){
+  .method-name{font-size:16px}
+  .method-desc{font-size:13.5px;max-width:660px}
+}
+
+/* MICRO BLOCK */
+.micro-block{padding:0}
+.micro-lead{font-size:14.5px;line-height:1.7;color:rgba(16,17,19,.78);letter-spacing:.01em;margin-bottom:14px}
+.micro-note{font-size:12.5px;line-height:1.7;color:rgba(16,17,19,.6);letter-spacing:.02em;margin-bottom:14px}
+.micro-steps{font-size:12.5px;line-height:1.9;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,17,19,.58)}
+.micro-steps span{display:block;padding-left:2px}
+@media(min-width:900px){
+  .micro-lead{font-size:15px;max-width:640px}
+  .micro-note{font-size:13px;max-width:640px}
+  .micro-steps{font-size:13px;max-width:640px}
+}
 
 /* BUTTONS */
 .btn,.strip-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .2s,color .2s}
@@ -60,7 +127,7 @@ h1{font-size:clamp(38px,10vw,62px);font-weight:400;line-height:1.04;letter-spaci
 
 /* CASES — espaçamento menor em cima */
 #cases{padding:48px 0 44px}
-.sec-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.38);padding:0 var(--pad);max-width:var(--max);margin:0 auto 20px}
+.sec-tag{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.45);padding:0 var(--pad);max-width:var(--max);margin:0 auto 22px}
 
 /* Slider */
 .slider-out{overflow:hidden}
@@ -70,25 +137,46 @@ h1{font-size:clamp(38px,10vw,62px);font-weight:400;line-height:1.04;letter-spaci
   will-change:transform;
   /* start at card 1 (Peregrino), set by JS */
 }
-.card{width:calc(min(72vw, 290px));flex-shrink:0;cursor:grab;user-select:none}
+.card{width:calc(min(90vw, 360px));flex-shrink:0;cursor:grab;user-select:none}
 .card:active{cursor:grabbing}
-@media(min-width:560px){
-  .card{width:calc(min(72vw, 290px))}
-}
+.card-reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.card-reveal.in{opacity:1;transform:translateY(0)}
 .card-link{display:block;text-decoration:none;color:var(--dark)}
-.card-img{width:100%;aspect-ratio:4/5;background:#111;position:relative;overflow:hidden}
+.card-img{width:100%;aspect-ratio:4/5;background:#111;position:relative;overflow:hidden;transition:transform .25s ease}
+.card-link:hover .card-img{transform:scale(1.03)}
+@media(min-width:560px){
+  .card{width:calc(min(90vw, 360px))}
+}
 .card-img>img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .card-arr{position:absolute;bottom:12px;right:12px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none}
 .card-arr img{width:100%;height:100%;object-fit:contain}
 .card-info{padding:10px 0 0}
 .card-name{font-size:14px;letter-spacing:-.01em}
 .card-name .reg{font-size:9px;margin-left:3px;vertical-align:super;font-weight:400}
-.card-kind{font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--sage);margin-top:3px}
+.card-kind{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(16,17,19,.55);margin-top:4px}
 
 /* DOTS */
 .dots{display:flex;gap:6px;padding:16px var(--pad) 0;max-width:var(--max);margin:0 auto}
 .dot{width:18px;height:2px;background:rgba(16,17,19,.15);border:none;cursor:pointer;padding:0;transition:width .2s,background .2s}
 .dot.on{width:34px;background:var(--dark)}
+
+/* WHY */
+.why-block{padding:0;display:flex;flex-direction:column}
+.why-block .why-tag,
+.why-block .why-text,
+.why-block .why-sub,
+.why-block .why-result{margin-left:-12px}
+.why-cta{align-self:flex-start}
+.why-tag{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(16,17,19,.45);margin-bottom:10px}
+.why-text{font-size:13.5px;line-height:1.7;color:rgba(16,17,19,.7);letter-spacing:.02em;margin-bottom:10px}
+.why-sub{font-size:12.5px;line-height:1.7;color:rgba(16,17,19,.58);letter-spacing:.02em;margin-top:4px}
+.why-result{font-size:12.5px;line-height:1.7;color:rgba(16,17,19,.6);letter-spacing:.02em;margin-top:8px}
+.why-cta{margin-top:16px}
+@media(min-width:900px){
+  .why-text{font-size:14px;max-width:660px}
+  .why-sub{font-size:13px;max-width:660px}
+  .why-result{font-size:13px;max-width:660px}
+}
 
 /* SHADOW DIVIDER */
 .shadow-divider{height:1px;background:transparent;box-shadow:0 6px 18px rgba(16,17,19,.07)}
@@ -109,9 +197,9 @@ h1{font-size:clamp(38px,10vw,62px);font-weight:400;line-height:1.04;letter-spaci
 .strip{margin-top:9px;padding:19px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .strip.dark{background:var(--dark);color:var(--bg)}
 .strip.green{background:var(--sage)}
-.strip-txt{font-size:11.5px;line-height:1.6;opacity:.6}
+.strip-txt{font-size:12.5px;line-height:1.65;opacity:.6}
 .strip.green .strip-txt{color:var(--dark)}
-.strip-txt strong{display:block;font-size:13px;font-weight:400;opacity:1;margin-bottom:2px;letter-spacing:-.01em}
+.strip-txt strong{display:block;font-size:14px;font-weight:400;opacity:1;margin-bottom:2px;letter-spacing:-.01em}
 .strip.dark .strip-txt strong{color:var(--bg)}
 .strip.green .strip-txt strong{color:var(--dark)}
 .strip-btn{font-size:8.5px;padding:10px 14px}
@@ -157,7 +245,7 @@ footer{padding:20px 0 28px}
   <button class="nav-drawer-close" id="drawerClose">&#x2715;</button>
   <a href="#cases" id="navCases">Cases</a>
   <a href="#contact" id="navContact">Contato</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdI5ETxoVG-0nO31UK0uJL_KXd_tN7zLgIDV9OURpmWiJz2xQ/viewform?usp=preview" target="_blank" rel="noopener" id="navDiag">Iniciar diagn&#xF3;stico</a>
+  <a href="diagnostico.html" id="navDiag">Iniciar diagn&#xF3;stico estrat&#xE9;gico</a>
 </nav>
 
 <header>
@@ -171,23 +259,52 @@ footer{padding:20px 0 28px}
 
 <section class="hero">
   <div class="col">
-    <p class="hero-tag">[Branding &amp; Design estrat&#xE9;gico p/ Startups]</p>
-    <h1><span class="h1-line1">A ruptura<img class="title-icon" src="src/icon.png" alt=""></span><br>do caos &#xE0; clareza.</h1>
-    <p class="hero-sub">Posicionamento que gera dire&#xE7;&#xE3;o e percep&#xE7;&#xE3;o.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdI5ETxoVG-0nO31UK0uJL_KXd_tN7zLgIDV9OURpmWiJz2xQ/viewform?usp=preview" class="btn" target="_blank" rel="noopener">
-      Iniciar diagn&#xF3;stico
+    <p class="hero-tag tag-reveal">Consultoria estrat&#xE9;gica de marca</p>
+    <h1><span id="heroType" data-text="Marcas n&#xE3;o falham por est&#xE9;tica.|| Falham por falta de dire&#xE7;&#xE3;o.">Marcas n&#xE3;o falham por est&#xE9;tica. Falham por falta de dire&#xE7;&#xE3;o.</span><span class="type-cursor" id="typeCursor">|</span><img class="title-icon" id="heroIcon" src="src/icon.png" alt=""></h1>
+    <p class="hero-sub sub-reveal">Diagn&#xF3;stico, posicionamento e estrutura.</p>
+    <a href="diagnostico.html" class="btn hero-cta btn-reveal">
+      Iniciar diagn&#xF3;stico estrat&#xE9;gico
       <span class="sq"><img class="arr-w" src="src/seta-w.png" alt=""><img class="arr-b" src="src/seta-b.png" alt=""></span>
     </a>
   </div>
 </section>
 
-<section id="cases">
+<section id="method" class="section-alt section-split">
+  <div class="col">
+    <p class="sec-tag" style="padding:0;margin-bottom:12px;">RUPTIVE Framework&#xAE;</p>
+    <div class="method-list">
+      <div class="method-item reveal-item">
+        <div class="method-no">01</div>
+        <div>
+          <div class="method-name">Ruptura &#x2014; Diagn&#xF3;stico Estrat&#xE9;gico</div>
+          <div class="method-desc">Entender onde a marca est&#xE1;, identificar falhas estruturais e problemas de percep&#xE7;&#xE3;o.</div>
+        </div>
+      </div>
+      <div class="method-item reveal-item">
+        <div class="method-no">02</div>
+        <div>
+          <div class="method-name">Dire&#xE7;&#xE3;o &#x2014; Posicionamento</div>
+          <div class="method-desc">Definir territ&#xF3;rio, proposta de valor e caminho estrat&#xE9;gico da marca.</div>
+        </div>
+      </div>
+      <div class="method-item reveal-item">
+        <div class="method-no">03</div>
+        <div>
+          <div class="method-name">Constru&#xE7;&#xE3;o &#x2014; Sistema de Identidade</div>
+          <div class="method-desc">Traduzir a estrat&#xE9;gia em um sistema visual e estrutural consistente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases" class="section-split">
   <p class="sec-tag">Cases Selecionados</p>
   <div class="slider-out">
     <div class="slider-trk" id="sliderTrk">
 
       <!-- card 0: Avesso -->
-      <div class="card">
+      <div class="card card-reveal">
         <a href="https://www.behance.net/gallery/192336403/AVESSO-" target="_blank" rel="noopener" class="card-link">
           <div class="card-img">
             <img src="src/avesso.png" alt="Avesso">
@@ -195,13 +312,13 @@ footer{padding:20px 0 28px}
           </div>
           <div class="card-info">
             <div class="card-name">Avesso <span class="reg">&#xAE;</span></div>
-            <div class="card-kind">Estrat&#xE9;gia de Marca</div>
+            <div class="card-kind">Reposicionamento estrat&#xE9;gico</div>
           </div>
         </a>
       </div>
 
       <!-- card 1: Peregrino (initial center) -->
-      <div class="card">
+      <div class="card card-reveal">
         <a href="https://www.behance.net/gallery/184367747/Peregrino-" target="_blank" rel="noopener" class="card-link">
           <div class="card-img">
             <img src="src/peregrino.png" alt="Peregrino">
@@ -209,13 +326,13 @@ footer{padding:20px 0 28px}
           </div>
           <div class="card-info">
             <div class="card-name">Peregrino <span class="reg">&#xAE;</span></div>
-            <div class="card-kind">Estrat&#xE9;gia de Marca</div>
+            <div class="card-kind">Estrutura&#xE7;&#xE3;o de marca</div>
           </div>
         </a>
       </div>
 
       <!-- card 2: Aurora -->
-      <div class="card">
+      <div class="card card-reveal">
         <a href="https://www.behance.net/gallery/191677025/Aurora-" target="_blank" rel="noopener" class="card-link">
           <div class="card-img">
             <img src="src/aurora.png" alt="Aurora">
@@ -223,7 +340,7 @@ footer{padding:20px 0 28px}
           </div>
           <div class="card-info">
             <div class="card-name">Aurora <span class="reg">&#xAE;</span></div>
-            <div class="card-kind">Estrat&#xE9;gia de Marca</div>
+            <div class="card-kind">Diagn&#xF3;stico e dire&#xE7;&#xE3;o</div>
           </div>
         </a>
       </div>
@@ -237,9 +354,39 @@ footer{padding:20px 0 28px}
   </div>
 </section>
 
+
+
+<section class="dual-block section-alt section-split">
+  <div class="col dual-grid">
+    <div class="dual-col micro-block">
+    <p class="micro-lead reveal-line" data-order="1">Voc&#xEA; n&#xE3;o come&#xE7;a com design.<br>Voc&#xEA; come&#xE7;a com diagn&#xF3;stico.</p>
+    <p class="micro-note reveal-line" data-order="2">Sem entender o cen&#xE1;rio atual, qualquer decis&#xE3;o se torna superficial.</p>
+    <div class="micro-steps">
+      <span class="reveal-line" data-order="3">&#x2192; Identificamos falhas estruturais</span>
+      <span class="reveal-line" data-order="4">&#x2192; Definimos uma dire&#xE7;&#xE3;o clara</span>
+      <span class="reveal-line" data-order="5">&#x2192; Estruturamos a base da marca</span>
+    </div>
+    </div>
+    <div class="dual-col why-block">
+    <p class="why-tag reveal-line right" data-order="6">O erro recorrente</p>
+    <p class="why-text reveal-line right" data-order="7">A maioria das marcas ignora esse processo.</p>
+    <p class="why-sub reveal-line right" data-order="8">Investem em est&#xE9;tica antes de entender posicionamento.</p>
+    <p class="why-result reveal-line right" data-order="9">O resultado &#xE9; previs&#xED;vel:<br>uma marca visualmente bem constru&#xED;da, mas sem dire&#xE7;&#xE3;o.</p>
+    <a href="diagnostico.html" class="btn hero-cta why-cta btn-reveal reveal-line right" data-order="10">
+      Iniciar diagn&#xF3;stico estrat&#xE9;gico
+      <span class="sq"><img class="arr-w" src="src/seta-w.png" alt=""><img class="arr-b" src="src/seta-b.png" alt=""></span>
+    </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
 <div class="shadow-divider"></div>
 
-<section id="contact">
+<section id="contact" class="section-split">
   <div class="col">
     <p class="sec-tag" style="padding:0;margin-bottom:0;">Links R&#xE1;pidos</p>
     <div class="links-grid">
@@ -256,11 +403,11 @@ footer{padding:20px 0 28px}
     </div>
     <div class="strip dark">
       <div class="strip-txt">
-        <strong>Iniciar diagn&#xF3;stico</strong>
+        <strong>Iniciar diagn&#xF3;stico estrat&#xE9;gico</strong>
         Vamos entender onde sua marca est&#xE1; e para onde ela precisa ir.
       </div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdI5ETxoVG-0nO31UK0uJL_KXd_tN7zLgIDV9OURpmWiJz2xQ/viewform?usp=preview" class="strip-btn" target="_blank" rel="noopener">
-        Come&#xE7;ar
+      <a href="diagnostico.html" class="strip-btn">
+        Iniciar diagn&#xF3;stico estrat&#xE9;gico
         <span class="sq"><img class="arr-b" src="src/seta-b.png" alt=""><img class="arr-w" src="src/seta-w.png" alt=""></span>
       </a>
     </div>
@@ -280,14 +427,14 @@ footer{padding:20px 0 28px}
 <div class="ticker-block">
   <div class="tk-row r1">
     <div class="tk-in">
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
-      <span>[BR&amp;ING // DESIGN]</span><span class="sep">*</span>
+      <span>[ESTRAT&#xC9;GIA // POSICIONAMENTO]</span><span class="sep">*</span>
+      <span>[DIAGN&#xD3;STICO // DIRE&#xC7;&#xC3;O]</span><span class="sep">*</span>
+      <span>[MARCA // SISTEMA]</span><span class="sep">*</span>
+      <span>[ESTRAT&#xC9;GIA // POSICIONAMENTO]</span><span class="sep">*</span>
+      <span>[DIAGN&#xD3;STICO // DIRE&#xC7;&#xC3;O]</span><span class="sep">*</span>
+      <span>[MARCA // SISTEMA]</span><span class="sep">*</span>
+      <span>[ESTRAT&#xC9;GIA // POSICIONAMENTO]</span><span class="sep">*</span>
+      <span>[DIAGN&#xD3;STICO // DIRE&#xC7;&#xC3;O]</span><span class="sep">*</span>
     </div>
   </div>
   <div class="tk-row r2">
@@ -310,6 +457,87 @@ footer{padding:20px 0 28px}
 
 <script>
 (function(){
+
+  /* ── HERO TYPEWRITER ── */
+  var heroType = document.getElementById('heroType');
+  var heroIcon = document.getElementById('heroIcon');
+  if(heroIcon) heroIcon.style.display = 'none';
+  if(heroType){
+    var full = heroType.getAttribute('data-text') || heroType.textContent;
+    var i = 0;
+    var speed = 45;
+    heroType.textContent = '';
+    function tick(){
+      if(i >= full.length){
+        if(heroIcon) heroIcon.style.display = 'inline-block';
+        var cursor = document.getElementById('typeCursor');
+        if(cursor) cursor.remove();
+        return;
+      }
+      if(full[i] === '|' && full[i+1] === '|'){
+        var br = document.createElement('br');
+        br.className = 'br-desktop';
+        heroType.appendChild(br);
+        i += 2;
+      } else {
+        heroType.appendChild(document.createTextNode(full[i]));
+        i += 1;
+      }
+      setTimeout(tick, speed);
+    }
+    tick();
+  }
+
+  /* ── METHOD REVEAL ── */
+  var revealItems = document.querySelectorAll('.reveal-item');
+  if(revealItems.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+    revealItems.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ── CASES CARD REVEAL ── */
+  var caseCards = document.querySelectorAll('.card-reveal');
+  if(caseCards.length){
+    var ioCards = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          ioCards.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+    caseCards.forEach(function(el){ ioCards.observe(el); });
+  }
+
+  /* ── DUAL BLOCK LINE REVEAL ── */
+  var dual = document.querySelector('.dual-block');
+  if(dual){
+    var lines = Array.prototype.slice.call(dual.querySelectorAll('.reveal-line'));
+    if(lines.length){
+      var io2 = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            lines
+              .sort(function(a,b){
+                return (parseInt(a.dataset.order,10)||0) - (parseInt(b.dataset.order,10)||0);
+              })
+              .forEach(function(el, idx){
+                setTimeout(function(){ el.classList.add('in'); }, idx * 120);
+              });
+            io2.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+      io2.observe(dual);
+    }
+  }
 
   /* ── HAMBURGER ── */
   var ham=document.getElementById('ham');
@@ -417,14 +645,14 @@ footer{padding:20px 0 28px}
     var dy = touchY0 - e.touches[0].clientY;
 
     /* determine axis on first significant move */
-    if(!touchAxis && (Math.abs(dx) > 6 || Math.abs(dy) > 6)){
+    if(!touchAxis && (Math.abs(dx) > 3 || Math.abs(dy) > 3)){
       touchAxis = Math.abs(dx) >= Math.abs(dy) ? 'h' : 'v';
     }
     if(touchAxis !== 'h') return; /* let vertical scroll be normal */
 
     touchMoved = true;
     e.preventDefault();
-    moveTo(touchPx0 + dx);
+    moveTo(touchPx0 + dx * 1.25);
   }, { passive: false });
 
   window.addEventListener('touchend', function(){
